@@ -28,6 +28,29 @@ struct Rectangle {
     height: u32,
 }
 
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self, other: &Rectangle) -> bool {
+        self.width > other.width && self.height > other.height
+    }
+
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
+    }
+}
+
+impl Rectangle {
+    fn width(&self) -> bool {
+        self.width > 0
+    }
+}
+
 fn area(r: &Rectangle) -> u32 {
     r.width * r.height
 }
@@ -67,6 +90,11 @@ fn main() {
         };
         println!("{:#?}", rect);
         println!("Area: {}", area(&rect));
+        println!("Area from method: {}", rect.area());
         dbg!(&rect);
+    }
+    {
+        let sq = Rectangle::square(3);
+        println!("{:#?}", sq);
     }
 }
