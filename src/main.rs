@@ -2,6 +2,7 @@
 // #![allow(unused_variables)]
 // #![allow(unused_mut)]
 #![allow(dead_code, unused)]
+#[derive(Debug)]
 struct User {
     active: bool,
     username: String,
@@ -21,6 +22,15 @@ fn build_user(email: String, username: String) -> User {
     }
 }
 
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+fn area(r: &Rectangle) -> u32 {
+    r.width * r.height
+}
 fn main() {
     {
         let mut user1 = User {
@@ -36,6 +46,7 @@ fn main() {
             email: String::from("another@example.com"),
             ..user1
         };
+        println!("{:#?}", user2);
     }
 
     {
@@ -47,5 +58,15 @@ fn main() {
     {
         let black = Color(0, 0, 0);
         let origin = Point(0, 0, 0);
+    }
+
+    {
+        let rect = Rectangle {
+            width: 30,
+            height: 15,
+        };
+        println!("{:#?}", rect);
+        println!("Area: {}", area(&rect));
+        dbg!(&rect);
     }
 }
